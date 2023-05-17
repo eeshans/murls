@@ -1,17 +1,36 @@
-#imports
+# imports
 import pandas as pd
 
 
-
-def readFile():
+# reading file
+def fileread():
     pd.options.display.max_rows = 50
     data = pd.read_csv('../malicious_phish.csv')
-    print(data)
+    return data
 
-#main function
+# scoring urls function
+def scoreurl(url):
+    urlscore = 5
+    if ("https" in url):
+        urlscore += 1
+
+
+    print(urlscore)
+
+
+# main function
 def main():
-    data = readFile()
-    print(data)
+
+    data = fileread()
+    for row in data:
+        scoreurl(row[1])
+    
+    # printing entries 1-20
+    # print(data.head(21))
+    
+    # sorting dataframe
+    # data.sort_values("type", axis=0, ascending=False, inplace=True)
+    
 
 if __name__ == "__main__":
 
